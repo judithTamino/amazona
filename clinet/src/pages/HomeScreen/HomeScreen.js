@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import data from "../../API/index";
+
+import axios from 'axios';
 
 export default function HomeScreen() {
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await axios.get("/api/products");
+      setProducts(data);
+    }
+    fetchData();
+    return () => {};
+  }, []);
+
   return (
     <div>
       <ul className="products">
-        {data.products.map((product, index) => {
+        {products.map((product, index) => {
           return (
             <li className="product" key={index}>
               <Link to={`/product/${product._id}`}>
@@ -22,8 +35,7 @@ export default function HomeScreen() {
               <div className="product-brand"> {product.brand} </div>
               <div className="price">${product.price}</div>
               <div className="product-rating">
-                {" "}
-                {product.rating} stars {product.numReviews}{" "}
+                {product.rating} stars {product.numReviews}
               </div>
             </li>
           );
