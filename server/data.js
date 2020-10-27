@@ -2,11 +2,11 @@ export default {
     products: [
       {
         _id: '1',
-        name: "Slim Shirt",
+        name: "TREFOIL TEE",
         category: 'Shirts',
         image: "/images/d1.jpg",
         price: 60,
-        brand: "Nike",
+        brand: "Adidas",
         rating: 4.5,
         numReviews: 10,
       },
